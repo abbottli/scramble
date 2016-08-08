@@ -1,20 +1,19 @@
-"use strict";
-
 window.onload = function() {
-  var elements = document.body.getElementsByTagName('*');
+   var elements = document.body.getElementsByTagName('*');
 
-  for (var i = 0; i < elements.length; i++) {
-    var text = '';
-    elements[i].innerHTML.split(/(<.+?>)/).forEach(function(s) {
-      text += s.charAt(0) === '<' ? s : scramble(s);
-    });
+   setInterval(function() {
+    for (var i = 0; i < elements.length; i++) {
+      var text = '';
+      elements[i].innerHTML.split(/(<.+?>)/).forEach(function(s) {
+        text += s.charAt(0) === '<' ? s : scramble(s);
+      });
 
-    elements[i].innerHTML = text;
-  }
+      elements[i].innerHTML = text;
+    }
+  }, 1000);
 };
 
-// scrambles middle letters 
-function scramble(s) {
+function scramble(s) { // scrambles middle letters 
   if (s.includes('&nbsp;')) { // ignores nbsp messes up the scramble a bunch
     return s;
   }
